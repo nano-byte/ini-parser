@@ -326,7 +326,7 @@ namespace IniParser.Model.Configuration
         public override int GetHashCode()
         {
             var hash = 27;
-            foreach (var property in GetType().GetProperties())
+            foreach (var property in typeof(IniParserConfiguration).GetProperties())
             {
                 hash = (hash * 7) + property.GetValue(this, null).GetHashCode();
             }
@@ -339,10 +339,9 @@ namespace IniParser.Model.Configuration
             var copyObj = obj as IniParserConfiguration;
             if (copyObj == null) return false;
 
-            var oriType = this.GetType();
             try
             {
-                foreach (var property in oriType.GetProperties())
+                foreach (var property in typeof(IniParserConfiguration).GetProperties())
                 {
                     if (property.GetValue(copyObj, null).Equals(property.GetValue(this, null)))
                     {
